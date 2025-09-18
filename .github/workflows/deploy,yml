@@ -1,0 +1,46 @@
+name: Build & Deploy Docs
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write      # required for actions/deploy-pages
+  id-token: write   # required for actions/deploy-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: https://<Thunfischdose.github.io/documentation-server
+      NEXT_PUBLIC_ROBOTS_DISALLOW: ""  # e.g. "/beta,/internal" if needed
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Needed once per runner for your Playwright-based PDF tooling
+      - run: npx playwright install chromium
+
+      - run: npm run lint
+      - run: npm run build   # emits static site into ./out
+
+      # Upload the ./out directory as the artifact for deployment
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
