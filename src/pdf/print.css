@@ -1,0 +1,147 @@
+﻿/* Base print styles for documentation exports */
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--theme-font-family, 'Inter', 'Helvetica Neue', Arial, sans-serif);
+  color: #111827;
+  background: #ffffff;
+}
+
+@page {
+  size: A4;
+  margin: 12mm 14mm 16mm 14mm;
+}
+
+.docs-content {
+  padding: 0;
+  background: #ffffff;
+  color: #111827;
+}
+
+.docs-content h1,
+.docs-content h2,
+.docs-content h3,
+.docs-content h4,
+.docs-content h5,
+.docs-content h6 {
+  color: #0f172a;
+  break-after: avoid;
+}
+
+.docs-content h1 {
+  font-size: 30px;
+}
+
+.docs-content h2 {
+  font-size: 24px;
+}
+
+.docs-content h3 {
+  font-size: 20px;
+}
+
+.docs-content h4 {
+  font-size: 18px;
+}
+
+.docs-content h5 {
+  font-size: 16px;
+}
+
+.docs-content h6 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.docs-content p,
+.docs-content li {
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.docs-content ul,
+.docs-content ol {
+  margin: 0 0 12px 20px;
+}
+
+.docs-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 12px;
+}
+
+.docs-content table th,
+.docs-content table td {
+  border: 1px solid #d1d5db;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.docs-content table thead th {
+  background: #f3f4f6;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+figure[data-image-template] {
+  margin: 18px auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+figure[data-image-template] img,
+figure[data-image-template] video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+figure[data-image-template] figcaption {
+  font-size: 11px;
+  text-align: center;
+  color: #4b5563;
+  margin-top: 8px;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+
+  header,
+  nav,
+  .no-print,
+  .fixed,
+  .sticky,
+  .navigation-overlay {
+    display: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #6b7280;
+  }
+
+  pre,
+  code {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+  }
+}

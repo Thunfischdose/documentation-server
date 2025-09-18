@@ -1,0 +1,23 @@
+﻿# Product 2 Admin Guide
+
+<ImageBig
+  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1400&auto=format&fit=crop"
+  alt="Product 2 admin console"
+  caption="Automation fleet health overview"
+/>
+
+## Weekly Maintenance
+
+| Task | Description | Owner |
+| --- | --- | --- |
+| Refresh geo-replication | Trigger the geo-sync job via the admin console. | Platform admin |
+| Audit access policies | Export the current policy map and review changes. | Compliance |
+| Archive stale tenants | Suspend workspaces inactive for 90+ days. | Billing ops |
+
+## Incident Response
+
+1. Enable maintenance mode to gracefully drain active sessions.
+2. Snapshot the `product2-core` database for forensic analysis.
+3. Escalate to L3 support if recovery exceeds 30 minutes.
+
+> Remember: Capture screenshots of all warning banners before rebooting nodes for postmortem records.

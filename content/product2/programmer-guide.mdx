@@ -1,0 +1,39 @@
+# Product 2 Programmer Guide
+
+![CI Pipeline](https://via.placeholder.com/800x420?text=CI+Pipeline)
+
+Product 2 focuses on automation. Use this guide to prepare your development workstation and deploy the processing service.
+
+## Build Requirements
+
+| Component | Version | Notes |
+| --- | --- | --- |
+| Python | 3.12 | Required for control-plane tooling |
+| Node.js | 22 (Active) | Supports the real-time dashboard |
+| PowerShell | 7.4 | Required for deployment scripts |
+
+## Installing the Windows Service
+
+```powershell
+# Publish the .NET worker artifacts
+msbuild .\workers\Product2.Agent.csproj /t:Publish /p:Configuration=Release
+
+# Remove any stale instance before installing
+sc.exe delete Product2Agent 2>$null | Out-Null
+Start-Sleep -Seconds 3
+
+# Register and configure recovery options
+sc.exe create Product2Agent binPath= "C:\\ops\\Product2\\Product2.Agent.exe" start= delayed-auto
+sc.exe failure Product2Agent reset= 86400 actions= restart/600
+
+# Kick off the agent
+sc.exe start Product2Agent
+```
+
+Validate the service by reviewing the Windows Event Log under **Applications and Services Logs > Product2**.
+
+## Development Workflow
+
+1. Clone the repo and run `npm install` inside `dashboard/` and `pip install -r requirements.txt` inside `control-plane/`.
+2. Execute `npm run dev` to start the live dashboard and `python manage.py runserver` for the control plane API.
+3. Commit new automation scripts under `automation/playbooks/` and add unit tests before opening a PR.

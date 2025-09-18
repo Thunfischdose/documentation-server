@@ -1,0 +1,34 @@
+# Product 1 Programmer Guide
+
+![Developer Workflow](https://via.placeholder.com/800x420?text=Developer+Workflow)
+
+Product 1 exposes a modular SDK to customize the pipeline. Review the following installation steps before extending the service.
+
+## Environment Matrix
+
+| Component | Recommended Version | Notes |
+| --- | --- | --- |
+| Node.js | 20 LTS | Required for build tooling |
+| .NET SDK | 8.0 | Needed for background worker service |
+| MSBuild | 17.x | Ship continuous integration builds |
+
+## Installing the Windows Service
+
+```powershell
+# Build the worker project
+msbuild .\workers\Product1.Service.csproj /t:Publish /p:Configuration=Release
+
+# Register the service with sc.exe
+sc.exe create Product1Worker binPath= "C:\\deploy\\Product1\\Product1.Service.exe" start= auto
+
+# Start the newly created service
+sc.exe start Product1Worker
+```
+
+After installation, validate the service is running by executing `Get-Service Product1Worker` and confirming the status `Running`.
+
+## Extending the Pipeline
+
+1. Duplicate `sdk/pipelines/sample-extension.ts` and rename it after your module.
+2. Register the extension in `sdk/index.ts` under the `loadExtensions` call.
+3. Ship an integration test using Jest to assert the new behavior.

@@ -1,0 +1,23 @@
+﻿# Product 1 Admin Guide
+
+<ImageMedium
+  src="https://images.unsplash.com/photo-1757502399162-2ce03568bd0e?q=80&w=1200&auto=format&fit=crop"
+  alt="Product 1 admin console overview"
+  caption="Admin console snapshot"
+/>
+
+## Daily Checklist
+
+| Task | Description | Owner |
+| --- | --- | --- |
+| Review health dashboard | Confirm services report "Healthy" across regions. | On-call admin |
+| Verify backups | Ensure overnight snapshots completed successfully. | Storage lead |
+| Rotate API tokens | Rotate any expiring credentials within 7 days. | Security team |
+
+## Escalation Steps
+
+1. Capture relevant logs from the orchestrator nodes.
+2. Create an incident ticket in the "Critical" queue.
+3. Notify stakeholders via the #product1-ops Slack channel.
+
+> Tip: Re-run `<Include slug="general/basicInstructions" />` in a staging environment after any configuration change to revalidate the base setup.

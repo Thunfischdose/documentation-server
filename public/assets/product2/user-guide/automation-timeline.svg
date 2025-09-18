@@ -1,0 +1,11 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" rx="24" fill="#ECFDF5"/>
+  <text x="64" y="84" fill="#065F46" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="600">Product 2 Automation Timeline</text>
+  <line x1="96" y1="200" x2="544" y2="200" stroke="#10B981" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="160" cy="200" r="28" fill="#047857"/>
+  <circle cx="320" cy="200" r="28" fill="#047857"/>
+  <circle cx="480" cy="200" r="28" fill="#047857"/>
+  <text x="144" y="272" fill="#065F46" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">Plan</text>
+  <text x="300" y="272" fill="#065F46" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">Execute</text>
+  <text x="456" y="272" fill="#065F46" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">Measure</text>
+</svg>
