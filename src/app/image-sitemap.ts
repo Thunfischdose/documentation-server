@@ -45,11 +45,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "monthly",
         priority: 0.5,
         images: images.length
-          ? images.map((image) => ({ url: image.url, title: image.title }))
+          ? images.map((image) => image.url)
           : undefined,
       },
     ];
   });
 }
-
 
